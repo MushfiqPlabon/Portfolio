@@ -1,0 +1,133 @@
+{
+  "personalInfo": {
+    "name": "Mushfiqur Rahman Plaban",
+    "title": "Building Digital Solutions with an Interdisciplinary Approach",
+    "objective": "Fusing a background in business management with full-stack development skills to deliver well-rounded and impactful applications.",
+    "location": "From Environment",
+    "links": {
+      "email": "From Environment",
+      "linkedin": "From Environment",
+      "github": "From Environment",
+      "facebook": "https://www.facebook.com/hellraiser.mrp/",
+      "resume": "https://docs.google.com/document/d/1zG87LK52AjDRVfxoi5SV3BS2EB4pGb0NbNxftwPbQ_Y/edit?usp=sharing"
+    }
+  },
+  "experience": [
+    {
+      "company": "Shovon Electronics",
+      "title": "Business Manager",
+      "location": "Dhaka, Bangladesh",
+      "duration": "Feb 2021 – Dec 2021",
+      "description": [
+        "Took over family business management after father's passing.",
+        "Managed operations for institutional clients (e.g., Institute of Engineers, Bangladesh).",
+        "Oversaw procurement, administrative tasks, legal formalities, and employee management.",
+        "Balanced business responsibilities with BBA studies and self-learning in web technologies."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Phitron by Programming Hero",
+      "degree": "Phitron AI/ML Course – Fall",
+      "duration": "Oct 2025 (In Progress)"
+    },
+    {
+      "institution": "Phitron by Programming Hero",
+      "degree": "CS Fundamentals",
+      "duration": "Oct 2024 – Sept 2025"
+    },
+    {
+      "institution": "Stanford University",
+      "degree": "Python Fundamentals (Code in Place 2025)",
+      "duration": "Apr 2025 – Jun 2025"
+    },
+    {
+      "institution": "National University, Bangladesh",
+      "degree": "Bachelor of Business Administration (BBA), Marketing",
+      "duration": "Jun 2019 – July 2023"
+    }
+  ],
+  "projects": [
+    {
+      "title": "HomeSer – Household Service Platform",
+      "stack": "React.js, Redux, Django DRF, PostgreSQL, SSLCommerz",
+      "description": "Engineered a full-stack service marketplace allowing users to book household services. Implemented secure authentication and integrated SSLCommerz for digital payments.",
+      "image": "https://raw.githubusercontent.com/MushfiqPlabon/staticPortfolio/main/public/images/projects/homeser-project.webp",
+      "liveSite": "https://homeser-frontend-react.vercel.app/",
+      "githubFrontend": "https://github.com/MushfiqPlabon/homeser-frontend-react",
+      "githubBackend": "https://github.com/MushfiqPlabon/homeser-backend-drf"
+    },
+    {
+      "title": "EventMan – Event Management System",
+      "stack": "Django MVT, HTMX, PostgreSQL, Cloudinary",
+      "description": "Developed a monolithic event management application focusing on server-side rendering efficiency. Utilised HTMX for dynamic interactions without a full SPA framework.",
+      "image": "https://raw.githubusercontent.com/MushfiqPlabon/staticPortfolio/main/public/images/projects/eventman-project.webp",
+      "liveSite": "https://event-man-drab.vercel.app/",
+      "github": "https://github.com/MushfiqPlabon/Eventman"
+    }
+  ],
+  "skills": {
+    "languages": ["Python", "JavaScript", "HTML5", "CSS3"],
+    "frameworks": ["React.js", "Redux Toolkit", "Django", "Django REST Framework", "TailwindCSS", "Bootstrap"],
+    "tools": ["PostgreSQL", "Supabase", "Git", "GitHub", "Vercel", "Render"],
+    "ai": ["AI-Augmented Development", "Prompt Engineering", "Gemini-CLI", "AI-Assisted Debugging", "GitHub Copilot"],
+    "business": ["Business management", "Client coordination", "Communication", "Adaptability"]
+  },
+  "certifications": [
+    "Code in Place 2025 (Python Fundamentals) - Stanford University",
+    "Code in Place 2024 - Stanford University",
+    "Responsive Web Design - freeCodeCamp (Apr 2022)",
+    "CSS (Basic) - HackerRank (Oct 2024)",
+    "Data Cleaning and Preprocessing with pandas - 365 Data Science (Nov 2025)",
+    "Intro to AI - 365 Data Science (Nov 2025)",
+    "Intro to LLMs - 365 Data Science (Nov 2025)",
+    "Intro to NLP for AI - 365 Data Science (Nov 2025)",
+    "Introduction to Data and Data Science - 365 Data Science (Nov 2025)",
+    "Introduction to Jupyter - 365 Data Science (Nov 2025)",
+    "Introduction to Python - 365 Data Science (Nov 2025)",
+    "Introduction to Data Analysis using Microsoft Excel - Coursera (Sep 2025)",
+    "Introduction to Microsoft Excel - Coursera (Jan 2025)",
+    "Coding for Marketers - Sololearn (Aug 2022)",
+    "Web Development Fundamentals - Sololearn (Aug 2022)",
+    "JavaScript - Sololearn (Jul 2022)",
+    "React + Redux Course - Sololearn (Mar 2022)",
+    "CSS Course - Sololearn (Aug 2020)",
+    "HTML Course - Sololearn (Aug 2019)"
+  ],
+  "languagesSpoken": [
+    {
+      "language": "Bengali",
+      "proficiency": "Native"
+    },
+    {
+      "language": "English",
+      "proficiency": "Professional working ability"
+    },
+    {
+      "language": "Hindi",
+      "proficiency": "Elementary ability"
+    },
+    {
+      "language": "Urdu",
+      "proficiency": "Elementary ability"
+    }
+  ],
+  "interests": [
+    "AI workflow automation",
+    "Tech tinkering & experimentation",
+    "Gaming & series",
+    "Broad learning across subjects",
+    "Career growth, networking, and future-proofing skills"
+  ],
+  "professionalLinks": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/MushfiqPlabon"
+    },
+    {
+      "name": "Resume",
+      "url": "https://docs.google.com/document/d/1zG87LK52AjDRVfxoi5SV3BS2EB4pGb0NbNxftwPbQ_Y/edit?usp=sharing"
+    }
+  ]
+}
