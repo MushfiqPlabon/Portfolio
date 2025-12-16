@@ -3,7 +3,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { GlassCard } from "@/components/glass/glass-card";
-import AnimatedElement from "@/components/animations/animated-element";
 import { Skills } from "@/types";
 
 interface SkillsSectionProps {
@@ -20,26 +19,24 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
   ];
 
   return (
-    <section id="skills" className="py-12 sm:py-16 md:py-20 px-4 container-skills">
-      <div className="max-w-6xl mx-auto">
-        <AnimatedElement
-          type="slide"
-          direction="up"
-          delay={0}
-          duration={0.6}
-          className="text-3xl md:text-4xl font-bold mb-12 text-center"
+    <section id="skills" className="py-[max(3vh,2rem)] px-4 container-skills">
+      <div className="max-w-[min(90vw,1200px)] mx-auto">
+        <motion.div
+          className="text-[var(--fluid-text-3xl)] font-bold mb-12 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0 }}
         >
           My <span className="text-primary-accent">Skills</span>
-        </AnimatedElement>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(150px,100%),1fr))] gap-[clamp(1rem,2vw,1.5rem)]">
           {skillCategories.map((category, index) => (
-            <AnimatedElement
+            <motion.div
               key={index}
-              type="slide"
-              direction="up"
-              delay={index * 0.1}
-              duration={0.6}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
             >
               <GlassCard className="p-6">
                 <h3 className="text-xl font-bold mb-4 text-primary-accent">{category.title}</h3>
@@ -56,7 +53,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
                   ))}
                 </div>
               </GlassCard>
-            </AnimatedElement>
+            </motion.div>
           ))}
         </div>
       </div>

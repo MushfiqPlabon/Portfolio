@@ -27,7 +27,7 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
         }}
       />
       {text && (
-        <p className={`mt-2 text-gray-400 ${size === "sm" ? "text-xs" : size === "md" ? "text-sm" : "text-base"}`}>
+        <p className={`mt-2 text-foreground ${size === "sm" ? "text-xs" : size === "md" ? "text-sm" : "text-base"}`}>
           {text}
         </p>
       )}

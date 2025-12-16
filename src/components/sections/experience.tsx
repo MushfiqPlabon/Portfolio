@@ -3,7 +3,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { GlassCard } from "@/components/glass/glass-card";
-import AnimatedElement from "@/components/animations/animated-element";
 import { Experience } from "@/types";
 
 interface ExperienceTimelineProps {
@@ -12,26 +11,24 @@ interface ExperienceTimelineProps {
 
 const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({ experiences }) => {
   return (
-    <section id="experience" className="py-20 px-4">
-      <div className="max-w-4xl mx-auto">
-        <AnimatedElement
-          type="slide"
-          direction="up"
-          delay={0}
-          duration={0.6}
-          className="text-3xl md:text-4xl font-bold mb-12 text-center"
+    <section id="experience" className="py-[max(3vh,2rem)] px-4">
+      <div className="max-w-[min(90vw,1200px)] mx-auto">
+        <motion.div
+          className="text-[var(--fluid-text-3xl)] font-bold mb-12 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0 }}
         >
           <span className="text-primary-accent">Work </span>Experience
-        </AnimatedElement>
+        </motion.div>
 
         <div className="space-y-8">
           {experiences.map((exp, index) => (
-            <AnimatedElement
+            <motion.div
               key={index}
-              type="slide"
-              direction="up"
-              delay={index * 0.1}
-              duration={0.6}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
             >
               <GlassCard className="p-6">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
@@ -53,7 +50,7 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({ experiences }) 
                   ))}
                 </ul>
               </GlassCard>
-            </AnimatedElement>
+            </motion.div>
           ))}
         </div>
       </div>

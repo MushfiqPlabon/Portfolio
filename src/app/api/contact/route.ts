@@ -1,13 +1,6 @@
 import { NextRequest } from 'next/server';
 import nodemailer from 'nodemailer';
-import validator from 'validator';
-import DOMPurify from 'dompurify';
-import { JSDOM } from 'jsdom';
 import { z } from 'zod';
-
-// Configure DOMPurify with JSDOM
-const window = new JSDOM('').window;
-const purify = DOMPurify(window as any);
 
 // Define Zod schema for contact form validation
 const contactSchema = z.object({
@@ -54,11 +47,11 @@ export async function POST(request: NextRequest) {
     // Verify SMTP connection
     await transporter.verify();
 
-    // Sanitize inputs to prevent injection attacks using DOMPurify
-    const sanitizedName = purify.sanitize(validatedName);
-    const sanitizedEmail = purify.sanitize(validatedEmail);
-    const sanitizedSubject = purify.sanitize(validatedSubject);
-    const sanitizedMessage = purify.sanitize(validatedMessage);
+    // Basic sanitation to prevent injection attacks
+    const sanitizedName = validatedName.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+    const sanitizedEmail = validatedEmail.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+    const sanitizedSubject = validatedSubject.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+    const sanitizedMessage = validatedMessage.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
 
     // Send email
     await transporter.sendMail({

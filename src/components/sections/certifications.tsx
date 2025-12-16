@@ -3,7 +3,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { GlassCard } from "@/components/glass/glass-card";
-import AnimatedElement from "@/components/animations/animated-element";
 
 interface CertificationsSectionProps {
   certifications: string[];
@@ -11,28 +10,26 @@ interface CertificationsSectionProps {
 
 const CertificationsSection: React.FC<CertificationsSectionProps> = ({ certifications }) => {
   return (
-    <section id="certifications" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
-        <AnimatedElement
-          type="slide"
-          direction="up"
-          delay={0}
-          duration={0.6}
-          className="text-3xl md:text-4xl font-bold mb-12 text-center"
+    <section id="certifications" className="py-[max(3vh,2rem)] px-4">
+      <div className="max-w-[min(90vw,1200px)] mx-auto">
+        <motion.div
+          className="text-[var(--fluid-text-3xl)] font-bold mb-12 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0 }}
         >
           Professional <span className="text-primary-accent">Certifications</span>
-        </AnimatedElement>
+        </motion.div>
 
         <GlassCard className="p-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(min(250px,100%),1fr))] gap-[clamp(1.5rem,3vw,1.5rem)]">
             {certifications.map((cert, index) => (
-              <AnimatedElement
+              <motion.div
                 key={index}
-                type="slide"
-                direction="up"
-                delay={index * 0.05}
-                duration={0.6}
                 className="flex items-start"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
               >
                 <div className="mr-4 text-primary-accent mt-1">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -40,7 +37,7 @@ const CertificationsSection: React.FC<CertificationsSectionProps> = ({ certifica
                   </svg>
                 </div>
                 <p className="text-foreground">{cert}</p>
-              </AnimatedElement>
+              </motion.div>
             ))}
           </div>
         </GlassCard>

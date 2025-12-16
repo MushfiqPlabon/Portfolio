@@ -8,7 +8,6 @@ import CertificationsSection from "@/components/sections/certifications";
 import LanguagesSpokenSection from "@/components/sections/languages-spoken";
 import InterestsSection from "@/components/sections/interests";
 import ContactSection from "@/components/sections/contact";
-import ProfessionalLinksSection from "@/components/sections/professional-links";
 import { getPortfolioData } from "@/lib/data";
 
 export default async function Home() {
@@ -25,7 +24,6 @@ export default async function Home() {
       <CertificationsSection certifications={portfolioData.certifications} />
       <LanguagesSpokenSection languages={portfolioData.languagesSpoken} />
       <InterestsSection interests={portfolioData.interests} />
-      <ProfessionalLinksSection links={portfolioData.professionalLinks} />
       <ContactSection />
     </Layout>
   );

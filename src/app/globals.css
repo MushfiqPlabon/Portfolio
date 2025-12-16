@@ -2,41 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Fluid typography and spacing scale with CSS variables */
+/* Theme variables */
 :root {
-  /* Font sizes using fluid scaling */
-  --font-size-sm: clamp(0.8rem, calc(0.7rem + 0.25vw), 0.875rem);
-  --font-size-base: clamp(1rem, calc(0.9rem + 0.5vw), 1.125rem);
-  --font-size-lg: clamp(1.125rem, calc(1rem + 0.625vw), 1.25rem);
-  --font-size-xl: clamp(1.25rem, calc(1.1rem + 0.75vw), 1.5rem);
-  --font-size-2xl: clamp(1.5rem, calc(1.25rem + 1.25vw), 2rem);
-  --font-size-3xl: clamp(2rem, calc(1.5rem + 2.5vw), 2.5rem);
-  --font-size-4xl: clamp(2.5rem, calc(2rem + 2.5vw), 3rem);
-  --font-size-5xl: clamp(3rem, calc(2.5rem + 2.5vw), 3.75rem);
-  --font-size-6xl: clamp(3.75rem, calc(3rem + 3.75vw), 4.5rem);
-
-  /* Spacing using fluid scaling */
-  --spacing-xs: clamp(0.5rem, calc(0.4rem + 0.25vw), 0.625rem);  /* 8px -> ~10px */
-  --spacing-sm: clamp(0.75rem, calc(0.6rem + 0.5vw), 1rem);      /* 12px -> 16px */
-  --spacing-md: clamp(1rem, calc(0.8rem + 0.8vw), 1.5rem);        /* 16px -> 24px */
-  --spacing-lg: clamp(1.5rem, calc(1.2rem + 1.25vw), 2rem);       /* 24px -> 32px */
-  --spacing-xl: clamp(2rem, calc(1.5rem + 2vw), 3rem);            /* 32px -> 48px */
-  --spacing-2xl: clamp(3rem, calc(2rem + 4vw), 5rem);             /* 48px -> 80px */
-
   /* Default (dark mode) styles */
-  --background: #1a1a1a;
-  --foreground: #ffffff;
-  --muted-foreground: #d1d5db; /* Light gray for muted text in dark mode */
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 0 0% 63.9%;
   --glass-white: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.1);
   --primary-accent: #00ffff;
+  --fluid-container-width: min(90vw, 1200px);
+  --fluid-gap: clamp(1rem, 3vw, 2rem);
+  --fluid-padding: clamp(1rem, 2vw, 1.5rem);
+  --fluid-text-lg: clamp(1.125rem, 2.5vw, 1.5rem);
+  --fluid-text-xl: clamp(1.25rem, 3vw, 1.875rem);
+  --fluid-text-2xl: clamp(1.5rem, 4vw, 2.25rem);
+  --fluid-text-3xl: clamp(1.875rem, 5vw, 3rem);
+  --fluid-text-4xl: clamp(2rem, 6vw, 3.75rem);
+  --fluid-text-5xl: clamp(2.5rem, 7vw, 4rem);
 }
 
 /* Light mode overrides */
 .light {
-  --background: #f0f0f0;
-  --foreground: #000000;
-  --muted-foreground: #4b5563; /* Darker gray for muted text in light mode */
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 0 0% 45.1%;
   --glass-white: rgba(255, 255, 255, 0.7);
   --glass-border: rgba(0, 0, 0, 0.1);
   --primary-accent: #008080;
@@ -44,25 +36,16 @@
 
 body {
   background-color: var(--background);
-  color: var(--foreground);
-  /* Add a subtle background pattern for more texture if desired */
   background-image: radial-gradient(circle at 1px 1px,
     rgba(255,255,255,0.1) 1px, transparent 0);
   background-size: clamp(15px, calc(10px + 2.5vw), 25px) clamp(15px, calc(10px + 2.5vw), 25px);
 }
 
-/* Container queries for responsive design based on container size rather than viewport */
-@container container-projects (max-width: 768px) {
-  .grid-cols-2 {
-    grid-template-columns: 1fr; /* Switch to single column on smaller containers */
+@layer base {
+  * {
+    @apply border-border;
   }
-}
-
-@container container-skills (max-width: 640px) {
-  .grid-cols-2 {
-    grid-template-columns: 1fr;
-  }
-  .grid-cols-3 {
-    grid-template-columns: 1fr 1fr; /* Switch from 3 columns to 2 on smaller containers */
+  body {
+    @apply bg-background text-foreground;
   }
 }

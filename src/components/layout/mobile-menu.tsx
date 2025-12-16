@@ -1,69 +1,57 @@
-import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import { GlassCard } from "@/components/glass/glass-card";
+import React, { useState } from "react";
 import { useTheme } from "next-themes";
-import { MOBILE_NAV_ITEMS } from "@/config/nav-items";
+import { MOBILE_NAV_ITEMS } from "@/config/navigation";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { Menu } from "lucide-react";
 
-interface MobileMenuProps {
-  id?: string;
-  isOpen: boolean;
-  toggleMenu: () => void;
-}
-
-const MobileMenu: React.FC<MobileMenuProps> = ({ id, isOpen, toggleMenu }) => {
+const MobileMenu = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const darkMode = theme === 'dark';
   const toggleDarkMode = () => setTheme(theme === 'dark' ? 'light' : 'dark');
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.3 }}
-          className="md:hidden absolute top-full left-0 w-full mt-4 z-40"
-          id={id}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Mobile navigation menu"
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
+      <SheetTrigger asChild>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="p-[min(2vw,0.5rem)] rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-primary-accent"
+          aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
         >
-          <div className="p-6 bg-dark-bg bg-opacity-100 backdrop-blur-xl backdrop-invert border border-glass-border rounded-xl shadow-2xl">
-            <div className="flex flex-col space-y-6">
-              {MOBILE_NAV_ITEMS.map((item) => (
-                <motion.div
-                  key={item}
-                  whileHover={{ x: 15 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <Link
-                    href={`#${item.toLowerCase()}`}
-                    className="text-xl font-medium text-foreground hover:text-primary-accent transition-colors block p-3 rounded-lg hover:bg-glass-white hover:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-primary-accent"
-                    onClick={toggleMenu}
-                    tabIndex={isOpen ? 0 : -1}
-                  >
-                    {item}
-                  </Link>
-                </motion.div>
-              ))}
-              <motion.div
-                whileHover={{ x: 15 }}
-                transition={{ type: "spring", stiffness: 300 }}
+          <Menu className="h-6 w-6 text-primary-accent" />
+        </Button>
+      </SheetTrigger>
+      <SheetContent
+        side="right"
+        className="w-[min(90vw,400px)] bg-dark-bg bg-opacity-100 backdrop-blur-xl border border-glass-border p-6"
+        aria-describedby={undefined}
+      >
+        <div className="flex flex-col space-y-6 mt-8">
+          {MOBILE_NAV_ITEMS.map((item) => (
+            <SheetClose asChild key={item}>
+              <Link
+                href={`#${item.toLowerCase()}`}
+                className="text-xl font-medium text-foreground hover:text-primary-accent transition-colors block p-3 rounded-lg hover:bg-glass-white hover:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-primary-accent"
               >
-                <button
-                  onClick={toggleDarkMode}
-                  className="text-xl font-medium text-foreground hover:text-primary-accent transition-colors block p-3 rounded-lg w-full text-left hover:bg-glass-white hover:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-primary-accent"
-                >
-                  {darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-                </button>
-              </motion.div>
-            </div>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+                {item}
+              </Link>
+            </SheetClose>
+          ))}
+          <SheetClose asChild>
+            <Button
+              variant="ghost"
+              className="text-xl font-medium text-foreground hover:text-primary-accent transition-colors block p-3 rounded-lg w-full text-left justify-start hover:bg-glass-white hover:bg-opacity-30"
+              onClick={toggleDarkMode}
+            >
+              {darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            </Button>
+          </SheetClose>
+        </div>
+      </SheetContent>
+    </Sheet>
   );
 };
 

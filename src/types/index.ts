@@ -60,11 +60,6 @@ export interface Interest {
   interest: string; // For single interest objects
 }
 
-export interface ProfessionalLink {
-  name: string;
-  url: string;
-}
-
 export interface PortfolioData {
   personalInfo: PersonalInfo;
   experience: Experience[];
@@ -74,5 +69,4 @@ export interface PortfolioData {
   certifications: string[]; // Array of certification strings from portfolio.md
   languagesSpoken: LanguageSpoken[];
   interests: string[]; // Array of interest strings
-  professionalLinks: ProfessionalLink[];
 }

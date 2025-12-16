@@ -3,15 +3,22 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { GlassCard } from "@/components/glass/glass-card";
 import { Button } from "@/components/ui/button";
 import MobileMenu from "@/components/layout/mobile-menu";
 import { useTheme } from "next-themes";
-import { NAV_ITEMS } from "@/config/nav-items";
+import { MAIN_NAV_ITEMS } from "@/config/navigation";
+import { cn } from "@/lib/utils";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [, setResizeCount] = useState(0); // Used to trigger re-renders on resize
   const { theme, setTheme } = useTheme();
   const darkMode = theme === 'dark';
   const toggleDarkMode = () => setTheme(theme === 'dark' ? 'light' : 'dark');
@@ -25,58 +32,54 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-    // Focus on the first menu item when menu opens for accessibility
-    if (!mobileMenuOpen) {
-      setTimeout(() => {
-        const firstMenuItem = document.querySelector('#mobile-menu a, #mobile-menu button');
-        if (firstMenuItem) {
-          (firstMenuItem as HTMLElement).focus();
-        }
-      }, 100);
-    }
-  };
+  // Handle window resize to ensure proper header rendering
+  useEffect(() => {
+    // Use a counter to trigger re-renders on resize
+    let resizeTimer: NodeJS.Timeout;
+
+    const handleResize = () => {
+      // Small delay to avoid excessive updates during resize
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        setResizeCount(prev => prev + 1); // Trigger re-render to recalculate CSS
+      }, 10);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      clearTimeout(resizeTimer);
+    };
+  }, []);
 
   return (
-    <GlassCard
-      className={`fixed top-2 sm:top-3 left-1/2 transform -translate-x-1/2 w-[96%] sm:w-[92%] lg:w-[90%] max-w-6xl xl:max-w-7xl 2xl:max-w-8xl z-50 transition-all duration-300 ${ // More responsive horizontal width and reduced vertical thickness
-        scrolled ? "backdrop-blur-xl backdrop-invert bg-opacity-90" : "backdrop-blur-lg backdrop-invert bg-opacity-90"
-      }`}
+    <header
+      className={cn(
+        "fixed top-[min(2vh,1rem)] left-1/2 transform -translate-x-1/2 w-[calc(100%-2rem)] max-w-[var(--fluid-container-width)] z-50 transition-all duration-300 border border-glass-border rounded-[25px] backdrop-blur-lg bg-glass-white bg-opacity-100",
+        scrolled && "backdrop-blur-xl"
+      )}
       role="banner"
     >
-      <div className="flex items-center justify-between w-full p-1.5 sm:p-2.5 md:p-3 lg:p-4">
+      <div className="flex items-center justify-between w-full p-[var(--fluid-padding)]">
         <div className="text-xl font-bold text-primary-accent">
           <Link href="/" className="block">MRP</Link>
         </div>
-        <nav className="hidden md:flex space-x-5 lg:space-x-7 xl:space-x-10" aria-label="Main navigation"> {/* Wider horizontal spacing */}
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <Link
-              href="/"
-              className="text-sm font-medium text-foreground hover:text-primary-accent transition-colors"
-              aria-label="Home"
-            >
-              Home
-            </Link>
-          </motion.div>
-          {NAV_ITEMS.filter(item => item !== "Home").map((item) => (
-            <motion.div
-              key={item}
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <Link
-                href={`#${item.toLowerCase()}`}
-                className="text-sm font-medium text-foreground hover:text-primary-accent transition-colors"
-                aria-label={item}
-              >
-                {item}
-              </Link>
-            </motion.div>
-          ))}
+        <nav className="hidden md:flex" aria-label="Main navigation">
+          <NavigationMenu>
+            <NavigationMenuList>
+              {MAIN_NAV_ITEMS.map((item) => (
+                <NavigationMenuItem key={item}>
+                  <Link href={`#${item.toLowerCase()}`}>
+                    {/* @next-codemod-error This Link previously used the now removed `legacyBehavior` prop, and has a child that might not be an anchor. The codemod bailed out of lifting the child props to the Link. Check that the child component does not render an anchor, and potentially move the props manually to Link. */
+                    }
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                      {item}
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
         </nav>
 
         <div className="hidden md:flex items-center space-x-3 sm:space-x-5">
@@ -87,18 +90,6 @@ const Header = () => {
           >
             {darkMode ? "☀️" : "🌙"}
           </button>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button
-              variant="outline"
-              className="border-primary-accent text-primary-accent hover:bg-primary-accent hover:text-dark-bg"
-              aria-label="Get in touch"
-            >
-              <Link href="/contact">Get in Touch</Link>
-            </Button>
-          </motion.div>
         </div>
 
         <div className="md:hidden flex items-center space-x-3">
@@ -109,23 +100,10 @@ const Header = () => {
           >
             {darkMode ? "☀️" : "🌙"}
           </button>
-          <button
-            className="p-1.5 sm:p-2 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary-accent"
-            onClick={toggleMenu}
-            aria-expanded={mobileMenuOpen}
-            aria-controls="mobile-menu"
-            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-          >
-            {mobileMenuOpen ? (
-              <span className="text-primary-accent">Close</span>
-            ) : (
-              <span className="text-primary-accent">Menu</span>
-            )}
-          </button>
+          <MobileMenu />
         </div>
       </div>
-      <MobileMenu id="mobile-menu" isOpen={mobileMenuOpen} toggleMenu={toggleMenu} />
-    </GlassCard>
+    </header>
   );
 };
 

@@ -24,12 +24,11 @@ export const GlassCard: React.FC<GlassCardProps> = ({
   ...props
 }) => {
   const cardClasses = cn(
-    "bg-glass-white backdrop-blur-lg border border-glass-border rounded-xl shadow-xl",
+    "bg-glass-white bg-opacity-100 backdrop-blur-lg border border-glass-border rounded-xl shadow-xl",
     className
   );
 
   if (animateOnHover) {
-    // Type the motion props separately to avoid conflicts
     const motionProps: MotionProps = {
       whileHover: {
         y: -5
@@ -42,7 +41,7 @@ export const GlassCard: React.FC<GlassCardProps> = ({
 
     return (
       <motion.div
-        className={cn(cardClasses, "p-4 sm:p-5 md:p-6")}
+        className={cn(cardClasses, "p-[var(--fluid-padding)]")}
         onClick={onClick}
         id={id}
         style={style}
@@ -59,7 +58,7 @@ export const GlassCard: React.FC<GlassCardProps> = ({
 
   return (
     <div
-      className={cn(cardClasses, "p-4 sm:p-5 md:p-6")}
+      className={cn(cardClasses, "p-[var(--fluid-padding)]")}
       onClick={onClick}
       id={id}
       style={style}
