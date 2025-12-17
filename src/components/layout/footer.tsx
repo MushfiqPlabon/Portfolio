@@ -27,7 +27,7 @@ const Footer: React.FC<FooterProps> = ({ personalInfo }) => {
                 {FOOTER_NAV_ITEMS.map((item) => (
                   <li key={item}>
                     <Link
-                      href={`#${item.toLowerCase()}`}
+                      href={`/#${item.toLowerCase()}`}
                       className="text-muted-foreground hover:text-primary transition-colors text-[var(--fluid-text-sm)]"
                     >
                       {item}

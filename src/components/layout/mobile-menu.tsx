@@ -33,7 +33,7 @@ const MobileMenu = () => {
           {NAV_ITEMS.map((item) => (
             <SheetClose asChild key={item}>
               <Link
-                href={`#${item.toLowerCase()}`}
+                href={`/#${item.toLowerCase()}`}
                 className="text-xl font-medium text-foreground hover:text-primary-accent transition-colors block p-3 rounded-lg hover:bg-glass-white hover:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-primary-accent"
               >
                 {item}
