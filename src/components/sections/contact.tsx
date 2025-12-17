@@ -75,7 +75,7 @@ const ContactSection = () => {
             transition={{ duration: 0.6, delay: 0 }}
           >
             <GlassCard className="p-8 h-full">
-              <h3 className="text-2xl font-bold mb-6 text-primary-accent">Contact Information</h3>
+              <h3 className="text-[var(--fluid-text-2xl)] font-bold mb-6 text-primary-accent">Contact Information</h3>
 
               <div className="space-y-6">
 
@@ -159,7 +159,7 @@ const ContactSection = () => {
             transition={{ duration: 0.6, delay: 0 }}
           >
             <GlassCard className="p-8 h-full">
-              <h3 className="text-2xl font-bold mb-6 text-primary-accent">Send a Message</h3>
+              <h3 className="text-[var(--fluid-text-2xl)] font-bold mb-6 text-primary-accent">Send a Message</h3>
 
               {submitStatus && (
                 <motion.div

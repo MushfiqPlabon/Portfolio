@@ -24,8 +24,9 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
         <motion.div
           className="text-[var(--fluid-text-3xl)] font-bold mb-12 text-center"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
           My <span className="text-primary-accent">Skills</span>
         </motion.div>
@@ -35,11 +36,12 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
               <GlassCard className="p-6">
-                <h3 className="text-xl font-bold mb-4 text-primary-accent">{category.title}</h3>
+                <h3 className="text-[var(--fluid-text-xl)] font-bold mb-4 text-primary-accent">{category.title}</h3>
                 <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {category.items.map((skill, skillIndex) => (
                     <motion.span

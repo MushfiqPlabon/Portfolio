@@ -1,7 +1,6 @@
-// Navigation items configuration
+// Navigation items configuration - central source of truth
+// Excludes "Home" and "About" as they're handled separately (Home = logo, About = hero button)
 export const NAV_ITEMS = [
-  "Home",
-  "About", 
   "Experience",
   "Education",
   "Projects", 
@@ -14,13 +13,8 @@ export const NAV_ITEMS = [
 
 // Footer navigation items (subset of main navigation)
 export const FOOTER_NAV_ITEMS = [
-  "Home",
-  "About",
   "Experience", 
   "Projects",
   "Skills",
   "Contact"
 ];
-
-// Navigation items for mobile menu (all items)
-export const MOBILE_NAV_ITEMS = NAV_ITEMS;

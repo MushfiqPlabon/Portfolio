@@ -45,19 +45,9 @@ export interface Skills {
   business: string[];
 }
 
-export interface Certification {
-  id?: number; // Optional for backward compatibility
-  certification: string; // For single certification objects
-}
-
 export interface LanguageSpoken {
   language: string;
   proficiency: string;
-}
-
-export interface Interest {
-  id?: number; // Optional
-  interest: string; // For single interest objects
 }
 
 export interface PortfolioData {
@@ -66,7 +56,7 @@ export interface PortfolioData {
   education: Education[];
   projects: Project[];
   skills: Skills;
-  certifications: string[]; // Array of certification strings from portfolio.md
+  certifications: string[];
   languagesSpoken: LanguageSpoken[];
-  interests: string[]; // Array of interest strings
+  interests: string[];
 }

@@ -11,10 +11,10 @@ interface LanguagesSpokenSectionProps {
 
 const LanguagesSpokenSection: React.FC<LanguagesSpokenSectionProps> = ({ languages }) => {
   return (
-    <section id="languages" className="py-20 px-4">
-      <div className="max-w-4xl mx-auto">
+    <section id="languages" className="py-[max(3vh,2rem)] px-4">
+      <div className="max-w-[min(90vw,1200px)] mx-auto">
         <motion.h2 
-          className="text-3xl md:text-4xl font-bold mb-12 text-center"
+          className="text-[var(--fluid-text-3xl)] font-bold mb-12 text-center"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -23,7 +23,7 @@ const LanguagesSpokenSection: React.FC<LanguagesSpokenSectionProps> = ({ languag
           Languages <span className="text-primary-accent">Spoken</span>
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-[clamp(1rem,3vw,2rem)]">
           {languages.map((lang, index) => (
             <motion.div
               key={index}
@@ -34,7 +34,7 @@ const LanguagesSpokenSection: React.FC<LanguagesSpokenSectionProps> = ({ languag
             >
               <GlassCard className="p-6">
                 <div className="flex justify-between items-center">
-                  <h3 className="text-xl font-bold text-primary-accent">{lang.language}</h3>
+                  <h3 className="text-[var(--fluid-text-xl)] font-bold text-primary-accent">{lang.language}</h3>
                   <span className="px-3 py-1 rounded-full text-sm bg-glass-white border border-glass-border text-foreground">
                     {lang.proficiency}
                   </span>

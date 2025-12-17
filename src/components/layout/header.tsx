@@ -18,7 +18,6 @@ import {
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [, setResizeCount] = useState(0); // Used to trigger re-renders on resize
   const { theme, setTheme } = useTheme();
   const darkMode = theme === 'dark';
   const toggleDarkMode = () => setTheme(theme === 'dark' ? 'light' : 'dark');
@@ -30,26 +29,6 @@ const Header = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Handle window resize to ensure proper header rendering
-  useEffect(() => {
-    // Use a counter to trigger re-renders on resize
-    let resizeTimer: NodeJS.Timeout;
-
-    const handleResize = () => {
-      // Small delay to avoid excessive updates during resize
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        setResizeCount(prev => prev + 1); // Trigger re-render to recalculate CSS
-      }, 10);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      clearTimeout(resizeTimer);
-    };
   }, []);
 
   return (

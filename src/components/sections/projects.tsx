@@ -17,8 +17,9 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
         <motion.div
           className="text-[var(--fluid-text-3xl)] font-bold mb-12 text-center"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
           Featured <span className="text-primary-accent">Projects</span>
         </motion.div>
@@ -28,7 +29,8 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
               <GlassCard animateOnHover className="p-6 h-full flex flex-col">
@@ -45,7 +47,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
                 </div>
 
                 <div className="flex-grow">
-                  <h3 className="text-xl font-bold mb-2 text-primary-accent">{project.title}</h3>
+                  <h3 className="text-[var(--fluid-text-xl)] font-bold mb-2 text-primary-accent">{project.title}</h3>
                   <p className="text-sm text-primary-accent mb-3">{project.stack}</p>
                   <p className="text-muted-foreground mb-4">{project.description}</p>
                 </div>

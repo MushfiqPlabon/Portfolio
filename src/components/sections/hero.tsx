@@ -38,12 +38,19 @@ const HeroSection: React.FC<HeroSectionProps> = ({ personalInfo }) => {
               </motion.h1>
 
               <motion.div
-                className="text-[var(--fluid-text-xl)] mb-6 text-muted-foreground"
+                className="mb-6 flex justify-center md:justify-start"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                {personalInfo.title}
+                <Image
+                  src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=2000&pause=500&color=2196F3&vCenter=true&width=500&lines=Developer+with+an+Operator's+Mindset;Systems+Thinker;Business-First+Developer;AI-Augmented+Developer"
+                  alt="Dynamic Titles"
+                  width={500}
+                  height={40}
+                  unoptimized
+                  className="max-w-full h-auto"
+                />
               </motion.div>
 
               <motion.div
@@ -63,11 +70,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({ personalInfo }) => {
               >
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Button asChild className="bg-primary-accent text-dark-bg hover:bg-cyan-500 font-bold">
-                    <Link href="#contact" className="drop-shadow-sm">Contact Me</Link>
+                    <Link href="/about">About Me</Link>
                   </Button>
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button variant="outline" className="border-primary-accent text-primary-accent hover:bg-primary-accent hover:text-dark-bg font-bold">
+                  <Button asChild variant="outline" className="border-primary-accent text-primary-accent hover:bg-primary-accent hover:text-dark-bg font-bold">
+                    <Link href="#contact">Contact Me</Link>
+                  </Button>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button asChild variant="outline" className="border-primary-accent text-primary-accent hover:bg-primary-accent hover:text-dark-bg font-bold">
                     <Link href={personalInfo.links.resume} target="_blank" rel="noopener noreferrer">See Résumé</Link>
                   </Button>
                 </motion.div>
@@ -85,7 +97,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ personalInfo }) => {
                 <div className="relative bg-glass-white bg-opacity-100 backdrop-blur-lg border border-glass-border rounded-2xl p-1">
                   <Image
                     src={process.env.NEXT_PUBLIC_PROFILE_IMAGE_URL || "https://res.cloudinary.com/djyxbgv9s/image/upload/v1765779054/1000002113_2_v2rkmi.jpg"}
-                    alt="Mushfiqur Rahman Plaban"
+                    alt={personalInfo.name}
                     width={550}
                     height={550}
                     className="w-full max-h-[min(45vh,300px)] object-contain rounded-xl"

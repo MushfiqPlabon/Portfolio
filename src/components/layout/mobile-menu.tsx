@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTheme } from "next-themes";
-import { MOBILE_NAV_ITEMS } from "@/config/navigation";
+import { NAV_ITEMS } from "@/config/nav-items";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -30,7 +30,7 @@ const MobileMenu = () => {
         aria-describedby={undefined}
       >
         <div className="flex flex-col space-y-6 mt-8">
-          {MOBILE_NAV_ITEMS.map((item) => (
+          {NAV_ITEMS.map((item) => (
             <SheetClose asChild key={item}>
               <Link
                 href={`#${item.toLowerCase()}`}

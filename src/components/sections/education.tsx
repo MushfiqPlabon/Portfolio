@@ -16,8 +16,9 @@ const EducationSection: React.FC<EducationSectionProps> = ({ education }) => {
         <motion.div
           className="text-[var(--fluid-text-3xl)] font-bold mb-12 text-center"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
           <span className="text-primary-accent">Education</span> & Learning
         </motion.div>
@@ -32,14 +33,15 @@ const EducationSection: React.FC<EducationSectionProps> = ({ education }) => {
                 key={index}
                 className="relative"
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <div className="flex flex-col md:grid md:grid-cols-12 gap-4">
                   <div className="md:col-span-5 md:order-1">
                     <GlassCard className="p-6">
-                      <h3 className="text-xl font-bold text-primary-accent">{edu.degree}</h3>
-                      <h4 className="text-lg font-semibold mt-2">{edu.institution}</h4>
+                      <h3 className="text-[var(--fluid-text-xl)] font-bold text-primary-accent">{edu.degree}</h3>
+                      <h4 className="text-[var(--fluid-text-lg)] font-semibold mt-2">{edu.institution}</h4>
                     </GlassCard>
                   </div>
 

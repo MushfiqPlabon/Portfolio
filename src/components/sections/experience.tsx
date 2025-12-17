@@ -16,8 +16,9 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({ experiences }) 
         <motion.div
           className="text-[var(--fluid-text-3xl)] font-bold mb-12 text-center"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
           <span className="text-primary-accent">Work </span>Experience
         </motion.div>
@@ -27,13 +28,14 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({ experiences }) 
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
               <GlassCard className="p-6">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                   <div>
-                    <h3 className="text-xl font-bold text-primary-accent">{exp.title}</h3>
+                    <h3 className="text-[var(--fluid-text-xl)] font-bold text-primary-accent">{exp.title}</h3>
                     <h4 className="text-lg font-semibold mt-1">{exp.company}</h4>
                   </div>
                   <span className="text-sm text-muted-foreground mt-2 md:mt-0 md:text-right block md:inline-block">{exp.duration}</span>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from 'next-themes';
+import { getPortfolioData } from "@/lib/data";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,10 +14,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Mushfiqur Rahman Plaban | Portfolio",
-  description: "Full Stack Developer & Business Manager | Building Digital Solutions with an Interdisciplinary Approach",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getPortfolioData();
+  return {
+    title: `${data.personalInfo.name} | Portfolio`,
+    description: data.personalInfo.title,
+  };
+}
 
 export default function RootLayout({
   children,

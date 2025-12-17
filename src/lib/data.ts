@@ -17,6 +17,7 @@ export async function getPortfolioData(): Promise<PortfolioData> {
         email: process.env.NEXT_PUBLIC_EMAIL || portfolioData.personalInfo.links.email,
         linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || portfolioData.personalInfo.links.linkedin,
         github: process.env.NEXT_PUBLIC_GITHUB_URL || portfolioData.personalInfo.links.github,
+        resume: process.env.NEXT_PUBLIC_RESUME || portfolioData.personalInfo.links.resume,
       }
     }
   };
