@@ -34,17 +34,28 @@ export async function POST(request: NextRequest) {
     }
 
     // Create transporter using SMTP settings from environment variables
+    const port = process.env.EMAIL_PORT ? parseInt(process.env.EMAIL_PORT, 10) : 587;
+    // secure must be true ONLY for implicit TLS (port 465). For 587 use STARTTLS with secure=false.
+    const secure = port === 465;
+
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST!,
-      port: process.env.EMAIL_PORT ? parseInt(process.env.EMAIL_PORT, 10) : 587,
-      secure: process.env.EMAIL_USE_TLS?.toLowerCase() === 'true', // true for 465, false for other ports
+      port,
+      secure,
       auth: {
         user: process.env.EMAIL_HOST_USER!,
         pass: process.env.EMAIL_HOST_PASSWORD!,
       },
+      // Enforce modern TLS when using STARTTLS (e.g., port 587)
+      tls: secure
+        ? undefined
+        : {
+            minVersion: 'TLSv1.2',
+          },
+      connectionTimeout: 15_000,
     });
 
-    // Verify SMTP connection
+    // Verify SMTP connection (this will also upgrade via STARTTLS on port 587)
     await transporter.verify();
 
     // Basic sanitation to prevent injection attacks
